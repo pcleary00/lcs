@@ -1,0 +1,3 @@
+/*global define */
+
+'use strict';

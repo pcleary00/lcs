@@ -17,10 +17,6 @@ object Application extends Controller {
     implicit val requestFailureFormat = Json.format[RequestFailure]
   }
 
-  def index = Action {
-    Ok(views.html.index.render("Hello Play Framework"))
-  }
-
   // Finds the longest common substrings in a set of documents
   def findLcs = Action(parse.json) { request =>
 
@@ -42,14 +38,6 @@ object Application extends Controller {
   private def fail(status: Int, message: String, detail: String = ""): SimpleResult = {
 
     Application.Status(status)(Json.toJson(RequestFailure(status, message, detail)))
-  }
-
-  def jsRoutes(varName: String = "jsRoutes") = Action { implicit request =>
-    Ok(
-      Routes.javascriptRouter(varName)(
-        routes.javascript.Application.lcs
-      )
-    ).as(JAVASCRIPT)
   }
 }
 
