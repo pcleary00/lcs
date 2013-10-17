@@ -5,7 +5,7 @@ class StringsSpec extends Specification {
 
   "Finding the LCS of 'comcast' and 'broadcaster'" should {
 
-    val results = Strings.longestCommonSubstrings(Set("comcast", "broadcaster"))
+    val results = Strings.findLongestCommonSubstrings(Set("comcast", "broadcaster"))
     "return 'cast'" in {
 
       results must beSuccessfulTry
@@ -15,7 +15,7 @@ class StringsSpec extends Specification {
   }
   "Finding the LCS that has multiple substrings of the same length 'xfinity' and 'fintipity'" should {
 
-    val results = Strings.longestCommonSubstrings(Set("xfinity", "fintipity"))
+    val results = Strings.findLongestCommonSubstrings(Set("xfinity", "fintipity"))
     "return 2 results" in {
 
       results must beSuccessfulTry

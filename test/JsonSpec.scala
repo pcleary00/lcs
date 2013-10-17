@@ -1,9 +1,9 @@
+import models.LcsRequest
 import org.specs2.mutable.Specification
-import play.api.libs.json.{JsError, Json}
+import play.api.libs.json.Json
 
 class JsonSpec extends Specification {
 
-  import controllers.Application._
 
   val goodJson =
     """
