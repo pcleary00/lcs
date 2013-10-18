@@ -47,7 +47,7 @@ $ cd ~/workspace/lcs
 $ play gen-idea
 ```
 
-4. This will create the IntelliJ IDEA project for you.  You can then open the project and have at it!
+This will create the IntelliJ IDEA project for you.  You can then open the project and have at it!
 
 #### Running the application
 Running the application, simply:
