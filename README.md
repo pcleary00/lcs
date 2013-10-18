@@ -31,6 +31,10 @@ The Play Application is setup like a very typical Play application.  There is no
  * **/app/services** - contains our lone service, **_Strings_** that has the method for finding the longest common substrings
 * **/conf** - contains the application configuration
  * **/conf/routes** - this is the Play _magic_ that routes incoming requests to the Controller
+* **/test** - contains different flavors of tests
+ * **/test/ApplicationSpec** - tests the Web API itself, sending various JSON requests and testing the responses
+ * **/test/JsonSpec** - tests some JSON serialization
+ * **/test/StringsSpec** - tests the functionality of the Strings class with a few scenarios
 
 #### Playing with the code (_I can go all day_)
 I use IntelliJ as my editor, I am not a big fan of the Scala IDE (yet), I find IntelliJ a much nicer experience when working with Scala.  I simply use the IntelliJ Community Edition with the JetBrains Scala Plugin, that's all.
