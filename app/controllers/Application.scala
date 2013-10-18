@@ -28,7 +28,7 @@ object Application extends Controller {
             val set = req.setOfStrings.toSet
 
             // If the set is not of the same size, then we dropped a duplicate
-            if (set.size != req.setOfStrings.size) {
+            if (set.size < req.setOfStrings.size) {
               fail(UNPROCESSABLE_ENTITY, DUPLICATE_MESSAGE)
             }
             else {
@@ -41,9 +41,9 @@ object Application extends Controller {
             }
           }
         }.recoverTotal {
-          e => fail(BAD_REQUEST, "Unable to read request", e.toString)
+          e => fail(BAD_REQUEST, "Unable to read request, entity provided is not in the correct format.", e.toString)
         }
-      }.getOrElse(fail(BAD_REQUEST, "Unable to parse request"))
+      }.getOrElse(fail(BAD_REQUEST, "Unable to parse request, the body must be a valid JSON object."))
   }
 
   // Convenience method to ensure that all failures are returned to the client in a consistent format

@@ -10,6 +10,7 @@ import scala.util.Try
 import java.lang.Exception
 
 import constants.Messages._
+import com.googlecode.concurrenttrees.solver.LCSubstringSolver
 
 /**
  * Thrown if a request is made and the set provided is empty
@@ -25,7 +26,8 @@ object Strings {
    * Finds the longest common substrings for a set of documents as Strings.<p>
    *   The set of strings must have at least one entry, or else the call will Fail
    * @param documents The documents to be evaulated.  Must contain at least one entry.
-   * @return a Try containing an alphabetically ordered list of strings.  If there is an unexpected exception,
+   * @return a Try containing an alphabetically ordered list of strings.
+   *         If there is an unexpected exception or if the set is empty, this will result in a Failure
    */
   def findLongestCommonSubstrings(documents: Set[String]): Try[List[String]] = {
 

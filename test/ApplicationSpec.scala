@@ -15,12 +15,10 @@ class ApplicationSpec extends Specification {
 
       val lcsRequest = new LcsRequest(Seq("comcast","broadcaster"))
       val js = Json.toJson(lcsRequest)
-      println(Json.prettyPrint(Json.toJson(lcsRequest)))
 
       val req = FakeRequest(POST, "/lcs").withJsonBody(js)
       val response = route(req).get
 
-      println(contentAsString(response))
       status(response) must beEqualTo(OK)
       contentType(response) must beSome.which(_ == "application/json")
 
@@ -32,8 +30,6 @@ class ApplicationSpec extends Specification {
 
       val emptyRequest = FakeRequest(POST,"/lcs").withHeaders(CONTENT_TYPE -> "application/json")
       val response = route(emptyRequest).get
-
-      println(contentAsString(response))
       status(response) must beEqualTo(BAD_REQUEST)
     }
 
@@ -49,7 +45,6 @@ class ApplicationSpec extends Specification {
       val nonSetRequest = FakeRequest(POST,"/lcs").withJsonBody(json)
       val response = route(nonSetRequest).get
 
-      println(contentAsString(response))
       status(response) must beEqualTo(UNPROCESSABLE_ENTITY)
 
       val failure = contentAsJson(response).as[RequestFailure]
