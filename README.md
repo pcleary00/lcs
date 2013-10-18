@@ -7,6 +7,21 @@ The application was built using the [Play Framework](http://www.playframework.co
 
 The Gentleman that you will see on the site is **Esko Ukkonen**, who developed an algorithm for constructing suffix trees in linear time.  For this application I used  [Google Code Concurrent Trees](https://code.google.com/p/concurrent-trees/), which is a Java implementation of Suffix and Radix Trees.  Concurrent Trees provided an example on solving the _Longest Common Substring_ problem.  I adapted the method to Scala, cleaned it up a lot, and added the ability to return more than one substring.  The Google Code example only returned the last substring found, this application will return all of the longest common substrings in a set of strings of the same length.
 
+### (Attempted) explanation of the algorithm
+> The premise of the algorithm is that we create a single, unified Suffix Tree that contains **ALL** of the suffixes from each of the strings being evaluated.  Each suffix (edge) between a parent and all child nodes is unique (as per the rules of suffix trees).  Also, each node in the tree represents a concatenation of all nodes from the root to the current node.  Finally, each suffix (ending node) that is in the tree is capable of having a value associated with it.  The algorithm here works by having each suffix contain a logical "pointer" to all strings that contain that suffix.
+
+#### Suffix Tree Creation
+* for each string being evaluated
+  * for each suffix in the string
+    *  if the suffix exists in the tree, add a reference to the string in a Set attached to the suffix
+    *  else no other strings loaded so far have this suffix, so create a new set and add the current string to it
+
+#### Longest Common Substring 
+* starting at the root, inspect each child node
+  * if the child node references all of the strings loaded into the tree (i.e. the value associated with node is a set referencing all strings that were loaded into the string
+  * the suffix for the child node is contained in all strings, consider it for the longest common substring
+
+
 ### Rules to Play (no pun intended)
 1. You cannot have a duplicate entry in your submission.  If you do, you will get an error message indicating that you cannot have duplicate entries in the set of strings you are evaluating.
 2. You must enter at least one string in your submission.  If you do not enter at least one string, you will get an error indicating that at least one string must be provided.
