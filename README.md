@@ -10,6 +10,7 @@ The Gentleman that you will see on the site is **Esko Ukkonen**, who developed a
 ### Rules to Play (no pun intended)
 1. You cannot have a duplicate entry in your submission.  If you do, you will get an error message indicating that you cannot have duplicate entries in the set of strings you are evaluating.
 2. You must enter at least one string in your submission.  If you do not enter at least one string, you will get an error indicating that at least one string must be provided.
+3. The application will only return common substrings that are greater than one character.
 
 ### Code Overview
 #### AngularJS
