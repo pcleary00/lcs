@@ -23,4 +23,15 @@ The AngularJS code resides in the **public** directory of the code.  Following t
 
 #### Play Application
 
+The Play Application is setup like a very typical Play application.  There is nothing surprising or outlandish here.  Here is where you can find what:
+* **/app** - contains the crux of the application code
+ * **app/constants** - simply contains message constants
+ * **/app/controllers** - here you will find a single Application controller, which has by-in-large a single method _findLcs_
+ * **/app/models** - contains the communication model classes for handling requests, as well as the JSON serialization
+ * **/app/services** - contains our lone service, **_Strings_** that has the method for finding the longest common substrings
+* **/conf** - contains the application configuration
+ * **/conf/routes** - this is the Play _magic_ that routes incoming requests to the Controller
+
+ 
+ 
 
