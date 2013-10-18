@@ -23,7 +23,7 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <h2 style="text-align:center">Find Least Common Substring</h2>
+                <h2 style="text-align:center">Longest Common Substrings</h2>
             </div>
         </div>
     </div>
@@ -31,13 +31,31 @@
 <div role="main" ng-controller="LcsController" class="container">
     <div class="row clear-navbar"></div>
     <div class="row container-fluid">
-        <h1>Enter a Strings <span class="hint">(enter one string to compare in each text box below)</span></h1>
+        <h1>Enter Strings<span class="hint"> (enter one string to compare in each text box below)</span></h1>
+
+        <div class="alert alert-error" ng-show="hasError">
+            <a class="close" data-dismiss="alert" ng-click="hasError=false">×</a>
+            <strong>Error!</strong> - {{errorData.reason}}
+        </div>
 
         <div ng-repeat="setEntry in setOfStrings">
             <textarea ng-model="setEntry.value" rows="2" class="lcsEntry"></textarea>
         </div>
-        <div class="container" style="text-align:center">
-            <button ng-click="findLcs()" name="findButton" class="btn btn-primary btn-large text-center">Find the Longest Common Substring</button>
+
+        <div class="well" ng-show="lcsResults">
+            <h4 class="resultsLabel">Results:</h4>
+
+            <div class="prettyprint linenums" style="lcmContainer">
+                <ol class="linenums">
+                    <li ng-repeat="res in lcsResults.lcm">{{res.value}}</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="container findButtonBar">
+            <button ng-click="findLcs()" name="findButton" class="btn btn-primary btn-large text-center">Find the
+                Longest Common Substring
+            </button>
         </div>
     </div>
 </div>

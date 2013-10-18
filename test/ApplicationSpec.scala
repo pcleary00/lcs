@@ -13,7 +13,7 @@ class ApplicationSpec extends Specification {
 
     "Return 'cast' for strings 'comcast' and 'broadcaster'" in new WithApplication {
 
-      val lcsRequest = new LcsRequest(Set("comcast","broadcaster"))
+      val lcsRequest = new LcsRequest(Seq("comcast","broadcaster"))
       val js = Json.toJson(lcsRequest)
       println(Json.prettyPrint(Json.toJson(lcsRequest)))
 
@@ -50,10 +50,10 @@ class ApplicationSpec extends Specification {
       val response = route(nonSetRequest).get
 
       println(contentAsString(response))
-      status(response) must beEqualTo(BAD_REQUEST)
+      status(response) must beEqualTo(UNPROCESSABLE_ENTITY)
 
       val failure = contentAsJson(response).as[RequestFailure]
-      failure.error must beEqualTo(BAD_REQUEST)
+      failure.error must beEqualTo(UNPROCESSABLE_ENTITY)
       failure.reason must contain(constants.Messages.DUPLICATE_MESSAGE)
     }
   }

@@ -11,7 +11,9 @@ import java.lang.Exception
 
 import constants.Messages._
 
-
+/**
+ * Thrown if a request is made and the set provided is empty
+ */
 class EmptySetException extends Exception(EMPTY_SET_MESSAGE)
 
 /**

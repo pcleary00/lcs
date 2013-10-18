@@ -16,17 +16,6 @@ class JsonSpec extends Specification {
       |}
     """.stripMargin
 
-  val dupJson =
-    """
-      |{
-      |  "setOfStrings" : [ {
-      |    "value" : "comcast"
-      |  }, {
-      |    "value" : "comcast"
-      |  } ]
-      |}
-    """.stripMargin
-
   "Good Json" should {
 
     "be able to be read into a set of strings" in {
@@ -34,14 +23,6 @@ class JsonSpec extends Specification {
       val sos = Json.parse(goodJson).as[LcsRequest]
       sos.setOfStrings.size must beEqualTo(2)
       sos.setOfStrings must contain("comcast") and contain("broadcaster")
-    }
-  }
-  "Duplicate json" should  {
-
-    "throw a duplicate exception" in {
-
-      val resultedInFailure = Json.parse(dupJson).validate[LcsRequest].fold( invalid =(e => true), valid = (res => false))
-      resultedInFailure must beTrue
     }
   }
 }

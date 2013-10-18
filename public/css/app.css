@@ -2,6 +2,9 @@
 
 body {
   padding-top: 20px;
+    background-image: url('../img/ukkonen.png');
+    background-repeat:no-repeat;
+    background-position: right top 40px;
 }
 
 .lcsEntry {
@@ -19,4 +22,36 @@ body {
 
 h1 {
   border-bottom: 1px solid gray;
+}
+
+.prettyprint .linenums {
+    -webkit-box-shadow: inset 40px 0 0 #FBFBFC,inset 41px 0 0 #ECECF0;
+    -moz-box-shadow: inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;
+    box-shadow: inset 40px 0 0 #FBFBFC,inset 41px 0 0 #ECECF0;
+}
+
+ol.linenums {
+    margin: 0 0 0 33px;
+}
+
+ol.linenums li {
+    padding-left: 12px;
+    color: #333;
+    line-height: 18px;
+    text-shadow: 0 1px 0 #FFF;
+}
+
+.resultsLabel {
+    display:block;
+    float:left;
+    width:75px;
+}
+
+.lcmContainer {
+    display:block;
+    float:left;
+}
+
+.findButtonBar {
+    text-align:center;
 }

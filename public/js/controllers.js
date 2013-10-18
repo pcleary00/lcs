@@ -4,16 +4,25 @@
 
 var lcsControllers = angular.module('lcsControllers',[]);
 
-lcsControllers.controller('LcsController',['$scope', 'lcsService',
+lcsControllers.controller('LcsController',['$scope', '$log', 'lcsService',
 
-    function($scope, lcsService) {
+    function($scope, $log, lcsService) {
 
         $scope.setOfStrings = [{value:"sample"}, {value:"sample2"}, {value:"sample3"}, {value:"sample4"}];
-        $scope.name = 'your name here'
+        $scope.hasError = false;
 
         $scope.findLcs = function() {
 
-            $scope.lcm = lcsService.findLongestCommonSubstrings($scope.setOfStrings)
+            $scope.errorData = {};
+            $scope.lcsResults = {};
+            lcsService.findLongestCommonSubstrings($scope.setOfStrings,
+                function onSuccess(data) {
+                    $scope.lcsResults = data;
+                },
+                function onFailure(data){
+                    $scope.errorData = data; $scope.hasError = true; $scope.lcsResults = null;
+                }
+            );
         }
     }
 ]);
