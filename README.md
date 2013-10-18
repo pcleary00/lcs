@@ -32,6 +32,38 @@ The Play Application is setup like a very typical Play application.  There is no
 * **/conf** - contains the application configuration
  * **/conf/routes** - this is the Play _magic_ that routes incoming requests to the Controller
 
+#### Playing with the code (_I can go all day_)
+I use IntelliJ as my editor, I am not a big fan of the Scala IDE (yet), I find IntelliJ a much nicer experience when working with Scala.  I simply use the IntelliJ Community Edition with the JetBrains Scala Plugin, that's all.
+> As of this writing, the SBT plug-in for IntelliJ was at version 1.55 and was rather unstable.  As such, I recommend generating the idea project through Play.
+
+1. Download and install the Play Framework here: http://www.playframework.com/download
+ On that link, you will see instructions to try and use the Typesafe Activator.  Admittedly, the Activator is pretty cool, but I rather enjoy just using Play by itself, so I use the *Classic Distribution* in these instructions.
+ Once you install Play, just make sure it is available on your path.
+2. Clone this repository (just making sure you are following along)
+3. Go into the lcs directory, and as follows:
+
+```bash
+$ cd ~/workspace/lcs
+$ play gen-idea
+```
+
+4. This will create the IntelliJ IDEA project for you.  You can then open the project and have at it!
+
+#### Running the application
+Running the application, simply:
+```bash
+$ cd ~/workspace/lcs
+$ play run
+```
+
+This will start play up on the default port 9000, you can access the application at http://localhost:9000
+
+### Ruminations
+1. I was rather unsatisfied with Play's Request / Response handling to support the API. I am likely to head over to [Spray](http://spray.io/) for a tour after this.  The application definitely did not require Play, I chose it based on familiarity.
+2. AngularJS makes me like JavaScript :)
+
  
+
  
+
 
