@@ -13,7 +13,7 @@ The Gentleman that you will see on the site is **Esko Ukkonen**, who developed a
 #### Suffix Tree Creation
 * for each string being evaluated
   * for each suffix in the string
-    *  if the suffix exists in the tree, add a reference to the string in a Set attached to the node
+    *  if the suffix exists in the tree, add a reference to the string in a Set attached to the suffix
     *  else no other strings loaded so far have this suffix, so create a new set and add the current string to it
 
 #### Longest Common Substring 
