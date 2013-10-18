@@ -10,7 +10,6 @@ import scala.util.Try
 import java.lang.Exception
 
 import constants.Messages._
-import com.googlecode.concurrenttrees.solver.LCSubstringSolver
 
 /**
  * Thrown if a request is made and the set provided is empty
@@ -41,7 +40,10 @@ object Strings {
 }
 
 /**
- * A Suffix Tree containing multiple documents
+ * A Suffix Tree containing multiple documents. There is only a single tree, ALL strings are added to the same tree.
+ * <p>
+ *   Each node in the suffix tree has a value, in this case it is a HashSet of all documents that contain that node/suffix.
+ *   It is important to conceptualize this suffix tree as a <strong>combined</strong> tree, containing suffixes for all documents
  * @param originalDocuments A set of Strings that are used to build the suffix tree
  */
 class SetBasedSuffixTree(originalDocuments: Set[String]) extends ConcurrentRadixTree[java.util.Set[String]](new DefaultCharSequenceNodeFactory()) {
@@ -54,6 +56,12 @@ class SetBasedSuffixTree(originalDocuments: Set[String]) extends ConcurrentRadix
     addSuffixesToRadixTree(document)
   }
 
+  /** Important step, add all of the suffixes for the string to the tree
+    * We look up the node that ends in the suffix (contains the suffix)
+    * If it exists, we add the current document/string to the HashSet value at that node
+    * If it does not exist, then the suffix does not yet exist in the tree.
+    * and we create a new empty Set for the node.
+    */
   private def addSuffixesToRadixTree(keyAsString: String) {
 
     val suffixes = CharSequences.generateSuffixes(keyAsString)
@@ -68,7 +76,11 @@ class SetBasedSuffixTree(originalDocuments: Set[String]) extends ConcurrentRadix
   }
 
   /**
-   * Finds the longest common substrings for the documents provided in the constructor
+   * Finds the longest common substrings for the documents provided in the constructor.
+   * <p>
+   *   We go down the tree, as we go we identify those nodes (suffixes) that are in ALL documents.
+   *   If it is, then we add the suffix for that key to the set of strings we are considering
+   *   Once the traversal is complete, we only return the <strong>longest</strong> substrings, and return them ordered
    * @return An Alphabetically Sorted List of strings that are common across all documents
    */
   def findLongestCommonSubstrings(): List[String] = {
